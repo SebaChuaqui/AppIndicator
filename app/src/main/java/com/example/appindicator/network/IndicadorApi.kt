@@ -7,11 +7,11 @@ import retrofit2.http.GET
 interface IndicadorApi {
 
     //vieja confiable
-    @GET("api")
-    fun fetchAllIndicadores(): Call<List<Indicadores>>
+    @GET("api/")
+    fun fetchAllIndicadores(): Call<Indicadores>
 
 
     //Corroutines
-    @GET("api")
-    suspend fun ferchAllIndicadorWithCorroutines(): Response<List<Indicadores>>
+    @GET("api/")
+    suspend fun ferchAllIndicadorWithCorroutines(): Response<Indicadores>
 }

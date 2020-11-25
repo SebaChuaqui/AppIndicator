@@ -16,16 +16,13 @@ interface IndicadorDao {
     fun updateOneIndicador(mIndicador: IndicadorEntity)
 
     @Update
-    fun updateAllIndicador(mList: List<IndicadorEntity>)
+    fun updateAllIndicador(mList: IndicadorEntity)
 
     @Query("SELECT * FROM indicador_table")
     fun showAllIndicador(): LiveData<List<IndicadorEntity>>
 
     @Query("SELECT * FROM indicador_table WHERE id=:mId" )
     fun showOneIndicadorById(mId: Int): LiveData<IndicadorEntity>
-
-    @Query("SELECT * FROM indicador_table WHERE codigo=:mCodigo" )
-    fun showAllIndicadorByCodigo(mCodigo: String): LiveData<List<IndicadorEntity>>
 
     @Delete
     fun deleteOneIndicador(mIndicador:IndicadorEntity)

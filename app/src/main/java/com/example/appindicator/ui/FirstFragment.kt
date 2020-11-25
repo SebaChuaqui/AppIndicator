@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appindicator.R
 import com.example.appindicator.Repository.IndicadorAdapter
@@ -51,7 +52,8 @@ class FirstFragment : Fragment(), PassTheData {
     override fun passTheIndicador(indicador: IndicadorEntity) {
 
         val mBundle = Bundle()
-        mBundle.putString("id", indicador.id)
+        mBundle.putString("id", indicador.id.toString())
+
         findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, mBundle)
 
     }

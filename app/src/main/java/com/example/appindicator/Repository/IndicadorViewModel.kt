@@ -22,7 +22,7 @@ class IndicadorViewModel(application: Application): AndroidViewModel(application
     fun deleteAll(){
         mRepository.deleteAllIndicador()
     }
-    fun insertOneIndicador(mIndicadorsEntity: IndicadorEntity) {
-        mRepository.insertOneIndicador(mIndicadorsEntity)
+    fun insertOneIndicador(mIndicadorEntity: IndicadorEntity) {
+        mRepository.insertOneIndicador(mIndicadorEntity)
     }
 }

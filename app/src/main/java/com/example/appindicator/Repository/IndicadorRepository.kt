@@ -34,15 +34,15 @@ class IndicadorRepository(private val indicadorDao: IndicadorDao) {
 
     fun getDataFromServerWithOutCoroutines() {
         val call = retroService.fetchAllIndicadores()
-        call.enqueue(object : Callback<List<Indicadores>> {
+        call.enqueue(object : Callback<Indicadores> {
             override fun onResponse(
-                call: Call<List<Indicadores>>,
-                response: Response<List<Indicadores>>
+                call: Call<Indicadores>,
+                response: Response<Indicadores>
             ) {
                 when (response.code()) {
                     in 200..299 -> CoroutineScope(Dispatchers.IO).launch {
                         response.body()?.let {
-                            indicadorDao.insertAllIndicador(converters(it))
+                            indicadorDao.insertAllIndicador(converters(listOf(it)))
                         }
                     }
                     in 300..399 -> Log.d("acierto", response.body().toString())
@@ -52,7 +52,7 @@ class IndicadorRepository(private val indicadorDao: IndicadorDao) {
                 }
             }
 
-            override fun onFailure(call: Call<List<Indicadores>>, t: Throwable) {
+            override fun onFailure(call: Call<Indicadores>, t: Throwable) {
                 Log.e("error", t.message.toString())
             }
         })
@@ -64,7 +64,7 @@ class IndicadorRepository(private val indicadorDao: IndicadorDao) {
         listFromNetwork.map {
             listMutable.add(
                 IndicadorEntity(
-
+                        id = 0,
                     it.bitcoin.nombre,
                     it.dolar.nombre,
                     it.dolarIntercambio.nombre,
